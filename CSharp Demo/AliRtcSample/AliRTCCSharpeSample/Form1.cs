@@ -153,7 +153,7 @@ namespace AliRtcSample
         private void initialItem()
         {
             this.richTextBox1.Clear();
-            this.richTextBox1.AppendText("127.0.0.1");
+            this.richTextBox1.AppendText("https://sj.chdi.com.cn/web/ali/token2");
             this.check_autoPush.Checked = true;
             this.checkAutoSub.Checked = true;
             this.checkAudio.Checked = true;
@@ -177,7 +177,7 @@ namespace AliRtcSample
 
         private void GetPassportFromAppServer(string strAppSrv, string strChannel, string strUserName, string strPassword, out AuthInfo authinfo)
         {
-            string requestUrl = strAppSrv + "login?passwd=" + strPassword + "&user=" + strUserName + "&room=" + strChannel;
+            string requestUrl = strAppSrv + "/?user=" + strUserName + "&room=" + strChannel;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
             request.ContentType = "application/json";
@@ -902,6 +902,22 @@ namespace AliRtcSample
                 MessageBox.Show("sdk初始化失败...");
                 return;
             }
+
+            byte[] buf = new byte[100];
+            ImportDll.getAudioCaptures(buf);
+
+            // string s = System.Text.Encoding.Default.GetString(buf);
+
+            string str = Encoding.UTF8.GetString(buf);
+            int pos = str.IndexOf('\0');
+            if (pos >= 0)
+                str = str.Substring(0, pos);
+
+            if (buf.Length>0)
+            {
+
+            }
+
             updateParamInfo();
             string appServerUrl = m_ParamInfo.strAppSer;
             string channel = m_ParamInfo.strChannel;
@@ -912,8 +928,8 @@ namespace AliRtcSample
             GetPassportFromAppServer(appServerUrl, channel, userName, passward, out autoinfo);
 
             ImportDll.setLocalViewConfig(this.panel_LocalView.Handle);
- 
-            if (0 < ImportDll.startPreview())
+            int i = ImportDll.startPreview();
+            if (0 <= i)
                 listBox_Tips.Items.Add("加载本地浏览成功...");
             else
                 listBox_Tips.Items.Add("加载本地浏览失败...");

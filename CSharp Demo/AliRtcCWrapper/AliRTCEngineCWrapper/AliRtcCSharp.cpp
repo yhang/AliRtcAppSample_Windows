@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "AliRtcCSharp.h"
+#include "stdio.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -479,6 +480,18 @@ int muteRemoteAudioPlaying(char *pUid, bool bEnable)
     return -1;
 }
 
+void getAudioCaptures(char *buf) {
+    if (g_pEngine != nullptr)
+    {
+        AliRtc::StringArray  aliArray = AliRtc::StringArray();
+        g_pEngine->getAudioCaptures(aliArray);
+        int size = aliArray.size();
+        AliRtc::String aliStr = aliArray.at(0);
+        //CString cstr = AliStringToCString(aliStr);
+        strcpy_s(buf, 100,  aliStr.c_str());
+    }
+}
+
 
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*                                          接口回调函数                                       */
@@ -552,4 +565,20 @@ AliRtc::String CStringToAliString(CString &s)
     AliRtc::String res = pChar;
     delete[] pChar;
     return res;
+}
+
+CString AliStringToCString(AliRtc::String& aliStr)
+{
+    char* strbuf = (char*)aliStr.c_str();
+    int bufSize = strlen(strbuf);
+    int len = MultiByteToWideChar(CP_UTF8, 0, strbuf, bufSize, NULL, 0);
+
+    wchar_t* wBuf = new wchar_t[len];
+    wmemset(wBuf, 0, len);
+
+    MultiByteToWideChar(CP_UTF8, 0, strbuf, bufSize, wBuf, len);
+
+    //delete(wBuf);
+    CString s = CString(wBuf);
+    return s;
 }

@@ -137,5 +137,7 @@ namespace AliRtcSample
         [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.StdCall)]  //error信息回调
         public static extern void setOccurErrorCallBack(setOccurErrorCB oecb);
 
+        [DllImport("AliRTCEngineCWrapper.dll", EntryPoint = "getAudioCaptures", CallingConvention = CallingConvention.Cdecl)] 
+        public static extern void getAudioCaptures(byte[] buf);
     }
 }
