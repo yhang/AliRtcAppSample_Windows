@@ -49,6 +49,8 @@
             this.checkScreen = new System.Windows.Forms.CheckBox();
             this.btn_left = new System.Windows.Forms.Button();
             this.btn_right = new System.Windows.Forms.Button();
+            this.comboBoxCamera = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox_LocalView.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -105,7 +107,7 @@
             // button_Join
             // 
             this.button_Join.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Join.Location = new System.Drawing.Point(987, 670);
+            this.button_Join.Location = new System.Drawing.Point(1119, 670);
             this.button_Join.Margin = new System.Windows.Forms.Padding(4);
             this.button_Join.Name = "button_Join";
             this.button_Join.Size = new System.Drawing.Size(105, 45);
@@ -133,7 +135,7 @@
             this.listBox_Tips.Margin = new System.Windows.Forms.Padding(4);
             this.listBox_Tips.Name = "listBox_Tips";
             this.listBox_Tips.ScrollAlwaysVisible = true;
-            this.listBox_Tips.Size = new System.Drawing.Size(259, 130);
+            this.listBox_Tips.Size = new System.Drawing.Size(499, 130);
             this.listBox_Tips.TabIndex = 8;
             // 
             // labelUserName
@@ -269,11 +271,32 @@
             this.btn_right.UseVisualStyleBackColor = true;
             this.btn_right.Click += new System.EventHandler(this.btn_right_Click);
             // 
+            // comboBoxCamera
+            // 
+            this.comboBoxCamera.FormattingEnabled = true;
+            this.comboBoxCamera.Location = new System.Drawing.Point(1128, 472);
+            this.comboBoxCamera.Name = "comboBoxCamera";
+            this.comboBoxCamera.Size = new System.Drawing.Size(479, 26);
+            this.comboBoxCamera.TabIndex = 22;
+            this.comboBoxCamera.SelectedIndexChanged += new System.EventHandler(this.comboBoxCamera_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1128, 378);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(135, 37);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Init";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AliRtcSample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1401, 788);
+            this.ClientSize = new System.Drawing.Size(1665, 788);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBoxCamera);
             this.Controls.Add(this.btn_right);
             this.Controls.Add(this.btn_left);
             this.Controls.Add(this.groupBox3);
@@ -325,6 +348,8 @@
         private System.Windows.Forms.CheckBox checkScreen;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkH5;
+        private System.Windows.Forms.ComboBox comboBoxCamera;
+        private System.Windows.Forms.Button button1;
     }
 }
 

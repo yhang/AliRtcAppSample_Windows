@@ -72,6 +72,7 @@ typedef void(*PublishResultCallBack)(int);
 // 调用函数
 AliRtc::String CStringToAliString(CString &s);
 CString AliStringToCString(AliRtc::String& aliStr);
+void AliStringArrayToBuf(AliRtc::StringArray& aliArray, char* buf);
 
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
 /*                                        接  口  函  数                                       */
@@ -106,7 +107,12 @@ extern "C" __declspec(dllexport) void setH5CompatibleMode(bool bEnable);        
 extern "C" __declspec(dllexport) int muteLocalMic(bool bEnable);                                /// 24.本地音频采集（本地静音）
 extern "C" __declspec(dllexport) int muteRemoteAudioPlaying(char *pUid, bool bEnable);          /// 25.远端音频采集（远端静音）
 
-extern "C" __declspec(dllexport) void getAudioCaptures(char *buf);
+extern "C" __declspec(dllexport) void getAudioCaptures(char *buf);                              /// 26.获取系统中的录音设备列表
+extern "C" __declspec(dllexport) void getCameraList(char *buf);                                 /// 27.获取摄像头列表
+extern "C" __declspec(dllexport) void setCurrentCamera(char* pCamera);                          /// 28.选择摄像头
+
+extern "C" __declspec(dllexport) void getAudioRenderers(char* buf);                             /// 29.获取系统中的扬声器列表
+
 
 // 接口回调
 extern "C" __declspec(dllexport) void CALLBACK setJoinResultCallBack(JoinResultCallBack jrcb);                                         /// 1.入会回调

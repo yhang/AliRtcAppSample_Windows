@@ -137,7 +137,17 @@ namespace AliRtcSample
         [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.StdCall)]  //error信息回调
         public static extern void setOccurErrorCallBack(setOccurErrorCB oecb);
 
-        [DllImport("AliRTCEngineCWrapper.dll", EntryPoint = "getAudioCaptures", CallingConvention = CallingConvention.Cdecl)] 
-        public static extern void getAudioCaptures(byte[] buf);
+        [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.Cdecl)]  //获取麦克风列表
+        public static extern void getAudioCaptures(byte[] buf); 
+
+        [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.Cdecl)] //获取摄像头列表
+        public static extern void getCameraList(byte[] buf);
+
+        [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.Cdecl)] //获取系统中的扬声器列表
+        public static extern void getAudioRenderers(byte[] buf);
+
+
+        [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.Cdecl)] //选择摄像头
+        public static extern void setCurrentCamera(String camera);
     }
 }

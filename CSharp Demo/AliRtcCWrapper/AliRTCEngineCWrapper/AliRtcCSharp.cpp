@@ -485,13 +485,36 @@ void getAudioCaptures(char *buf) {
     {
         AliRtc::StringArray  aliArray = AliRtc::StringArray();
         g_pEngine->getAudioCaptures(aliArray);
-        int size = aliArray.size();
-        AliRtc::String aliStr = aliArray.at(0);
-        //CString cstr = AliStringToCString(aliStr);
-        strcpy_s(buf, 100,  aliStr.c_str());
+        AliStringArrayToBuf(aliArray, buf);
     }
 }
 
+void getCameraList(char* buf) {
+    if (g_pEngine != nullptr)
+    {
+        AliRtc::StringArray  aliArray = AliRtc::StringArray();
+        g_pEngine->getCameraList(aliArray);
+        AliStringArrayToBuf(aliArray, buf);
+    }
+}
+
+void setCurrentCamera(char* pCamera)
+{
+    if (g_pEngine != nullptr)
+    {
+        CString strCamera(pCamera);
+        g_pEngine->setCurrentCamera(CStringToAliString(strCamera));
+    }
+}
+
+void getAudioRenderers(char* buf) {
+    if (g_pEngine != nullptr)
+    {
+        AliRtc::StringArray  aliArray = AliRtc::StringArray();
+        g_pEngine->getAudioRenderers(aliArray);
+        AliStringArrayToBuf(aliArray, buf);
+    }
+}
 
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*                                          接口回调函数                                       */
@@ -581,4 +604,17 @@ CString AliStringToCString(AliRtc::String& aliStr)
     //delete(wBuf);
     CString s = CString(wBuf);
     return s;
+}
+
+void AliStringArrayToBuf(AliRtc::StringArray& aliArray, char* buf) {
+    int size = aliArray.size();
+
+    int nextlen = 0;
+    for (int i = 0; i < size; i++)
+    {
+        AliRtc::String aliStr = aliArray.at(i);
+        int len = strlen(aliStr.c_str()) + 1;
+        strcpy_s(buf + nextlen, len, aliStr.c_str());
+        nextlen += len;
+    }
 }

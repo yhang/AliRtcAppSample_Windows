@@ -896,28 +896,7 @@ namespace AliRtcSample
 
         private void button_Join_Click(object sender, EventArgs e)
         {
-            ImportDll.setH5CompatibleMode(m_ParamInfo.bH5Mode);
-            if (false == ImportDll.initAliSdk())
-            {
-                MessageBox.Show("sdk初始化失败...");
-                return;
-            }
-
-            byte[] buf = new byte[100];
-            ImportDll.getAudioCaptures(buf);
-
-            // string s = System.Text.Encoding.Default.GetString(buf);
-
-            string str = Encoding.UTF8.GetString(buf);
-            int pos = str.IndexOf('\0');
-            if (pos >= 0)
-                str = str.Substring(0, pos);
-
-            if (buf.Length>0)
-            {
-
-            }
-
+            
             updateParamInfo();
             string appServerUrl = m_ParamInfo.strAppSer;
             string channel = m_ParamInfo.strChannel;
@@ -933,7 +912,6 @@ namespace AliRtcSample
                 listBox_Tips.Items.Add("加载本地浏览成功...");
             else
                 listBox_Tips.Items.Add("加载本地浏览失败...");
-        
 
             dllJoinChannel(autoinfo);
         }
@@ -1011,6 +989,65 @@ namespace AliRtcSample
             PubResultCB = new ImportDll.setPubResultCB(onPubResult);
             ImportDll.setPublishResultCallBack(PubResultCB);
             ImportDll.publish();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            updateParamInfo();
+            ImportDll.setH5CompatibleMode(m_ParamInfo.bH5Mode);
+            if (false == ImportDll.initAliSdk())
+            {
+                MessageBox.Show("sdk初始化失败...");
+                return;
+            }
+
+            byte[] buf = new byte[100];
+            ImportDll.getAudioCaptures(buf);
+
+            string str = Encoding.UTF8.GetString(buf);
+            int pos = str.IndexOf('\0');
+            if (pos >= 0)
+                str = str.Substring(0, pos);
+            Console.WriteLine(str);
+
+            buf = new byte[200];
+            ImportDll.getCameraList(buf);
+
+            str = Encoding.UTF8.GetString(buf);
+
+            int k = 0;
+
+            while (k < str.Length)
+            {
+                pos = str.IndexOf('\0', k);
+                if ( pos >= 0)
+                {
+                    string camera = str.Substring(k, pos-k);
+                    comboBoxCamera.Items.Add(camera);
+                }
+
+                if ((pos < (str.Length - 2)) && (str.ElementAt(pos + 1) == '\0'))
+                    break;
+
+                k = pos + 1;
+            }
+
+            comboBoxCamera.SelectedIndex = 0;
+
+            buf = new byte[200];
+            ImportDll.getAudioRenderers(buf);
+            str = Encoding.UTF8.GetString(buf);
+            pos = str.IndexOf('\0');
+            if (pos >= 0)
+                str = str.Substring(0, pos);
+            Console.WriteLine(str);
+        }
+
+        private void comboBoxCamera_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string camera = comboBoxCamera.SelectedItem.ToString();
+
+            ImportDll.setCurrentCamera(camera);
         }
     }
 }
