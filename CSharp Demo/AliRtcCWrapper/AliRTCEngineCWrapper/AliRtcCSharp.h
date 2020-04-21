@@ -108,10 +108,11 @@ extern "C" __declspec(dllexport) int muteLocalMic(bool bEnable);                
 extern "C" __declspec(dllexport) int muteRemoteAudioPlaying(char *pUid, bool bEnable);          /// 25.远端音频采集（远端静音）
 
 extern "C" __declspec(dllexport) void getAudioCaptures(char *buf);                              /// 26.获取系统中的录音设备列表
-extern "C" __declspec(dllexport) void getCameraList(char *buf);                                 /// 27.获取摄像头列表
-extern "C" __declspec(dllexport) void setCurrentCamera(char* pCamera);                          /// 28.选择摄像头
-
-extern "C" __declspec(dllexport) void getAudioRenderers(char* buf);                             /// 29.获取系统中的扬声器列表
+extern "C" __declspec(dllexport) void setCurrentAudioCapture(char* pAudioCapture);              /// 27.选择录音设备
+extern "C" __declspec(dllexport) void getCameraList(char *buf);                                 /// 28.获取摄像头列表
+extern "C" __declspec(dllexport) void setCurrentCamera(char* pCamera);                          /// 29.选择摄像头
+extern "C" __declspec(dllexport) void getAudioRenderers(char* buf);                             /// 30.获取系统中的扬声器列表
+extern "C" __declspec(dllexport) void setCurrentAudioRenderer(char* pAudioRenderer);            /// 31.选择扬声器
 
 
 // 接口回调

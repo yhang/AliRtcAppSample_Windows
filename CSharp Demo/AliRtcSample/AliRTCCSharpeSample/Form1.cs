@@ -133,6 +133,7 @@ namespace AliRtcSample
         public delegate void SubscribeResultDelegate
             (string strUid, AliRtcAudioTrack audioTrack, AliRtcVideoTrack videoTrack);
         public static LinkedList<viewInfo> m_viewInfoList;
+        ChromeForm chromeForm = new ChromeForm();
 
         public AliRtcSample()
         {
@@ -158,7 +159,7 @@ namespace AliRtcSample
             this.checkAutoSub.Checked = true;
             this.checkAudio.Checked = true;
             this.checkCamera.Checked = true;
-            this.checkH5.Checked = false;
+            this.checkH5.Checked = true;
             this.checkScreen.Checked = false;
         }
 
@@ -906,13 +907,6 @@ namespace AliRtcSample
 
             GetPassportFromAppServer(appServerUrl, channel, userName, passward, out autoinfo);
 
-            ImportDll.setLocalViewConfig(this.panel_LocalView.Handle);
-            int i = ImportDll.startPreview();
-            if (0 <= i)
-                listBox_Tips.Items.Add("加载本地浏览成功...");
-            else
-                listBox_Tips.Items.Add("加载本地浏览失败...");
-
             dllJoinChannel(autoinfo);
         }
 
@@ -933,6 +927,7 @@ namespace AliRtcSample
 
         private void AliRtcSample_FormClosing(object sender, EventArgs e)
         {
+            ImportDll.releaseAliSdk();
             mainFrm = null;
         }
 
@@ -1041,6 +1036,13 @@ namespace AliRtcSample
             if (pos >= 0)
                 str = str.Substring(0, pos);
             Console.WriteLine(str);
+
+            ImportDll.setLocalViewConfig(this.panel_LocalView.Handle);
+            int i = ImportDll.startPreview();
+            if (0 <= i)
+                listBox_Tips.Items.Add("加载本地浏览成功...");
+            else
+                listBox_Tips.Items.Add("加载本地浏览失败...");
         }
 
         private void comboBoxCamera_SelectedIndexChanged(object sender, EventArgs e)
@@ -1048,6 +1050,11 @@ namespace AliRtcSample
             string camera = comboBoxCamera.SelectedItem.ToString();
 
             ImportDll.setCurrentCamera(camera);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            chromeForm.Show();
         }
     }
 }

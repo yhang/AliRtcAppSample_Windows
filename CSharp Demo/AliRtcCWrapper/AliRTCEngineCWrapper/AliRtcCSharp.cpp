@@ -489,6 +489,15 @@ void getAudioCaptures(char *buf) {
     }
 }
 
+void setCurrentAudioCapture(char* pAudioCapture)
+{
+    if (g_pEngine != nullptr)
+    {
+        CString strAudioCapture(pAudioCapture);
+        g_pEngine->setCurrentAudioCapture(CStringToAliString(strAudioCapture));
+    }
+}
+
 void getCameraList(char* buf) {
     if (g_pEngine != nullptr)
     {
@@ -513,6 +522,15 @@ void getAudioRenderers(char* buf) {
         AliRtc::StringArray  aliArray = AliRtc::StringArray();
         g_pEngine->getAudioRenderers(aliArray);
         AliStringArrayToBuf(aliArray, buf);
+    }
+}
+
+void setCurrentAudioRenderer(char* pAudioRenderer)
+{
+    if (g_pEngine != nullptr)
+    {
+        CString strAudioRenderer(pAudioRenderer);
+        g_pEngine->setCurrentCamera(CStringToAliString(strAudioRenderer));
     }
 }
 

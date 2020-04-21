@@ -149,5 +149,11 @@ namespace AliRtcSample
 
         [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.Cdecl)] //选择摄像头
         public static extern void setCurrentCamera(String camera);
+
+        [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.Cdecl)] //选择录音设备
+        public static extern void setCurrentAudioCapture(String audioCapture);
+
+        [DllImport("AliRTCEngineCWrapper.dll", CallingConvention = CallingConvention.Cdecl)] //选择扬声器
+        public static extern void setCurrentAudioRenderer(String audioRenderer);
     }
 }

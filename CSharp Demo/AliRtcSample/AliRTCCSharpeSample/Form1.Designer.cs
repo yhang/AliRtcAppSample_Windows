@@ -51,6 +51,7 @@
             this.btn_right = new System.Windows.Forms.Button();
             this.comboBoxCamera = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox_LocalView.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -67,7 +68,7 @@
             this.groupBox_LocalView.Size = new System.Drawing.Size(235, 189);
             this.groupBox_LocalView.TabIndex = 1;
             this.groupBox_LocalView.TabStop = false;
-            this.groupBox_LocalView.Text = "Local View";
+            this.groupBox_LocalView.Text = "本地视频";
             // 
             // panel_LocalView
             // 
@@ -103,11 +104,12 @@
             this.textBox_ChannelNum.Name = "textBox_ChannelNum";
             this.textBox_ChannelNum.Size = new System.Drawing.Size(189, 28);
             this.textBox_ChannelNum.TabIndex = 5;
+            this.textBox_ChannelNum.Text = "666";
             // 
             // button_Join
             // 
             this.button_Join.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Join.Location = new System.Drawing.Point(1119, 670);
+            this.button_Join.Location = new System.Drawing.Point(987, 658);
             this.button_Join.Margin = new System.Windows.Forms.Padding(4);
             this.button_Join.Name = "button_Join";
             this.button_Join.Size = new System.Drawing.Size(105, 45);
@@ -135,7 +137,7 @@
             this.listBox_Tips.Margin = new System.Windows.Forms.Padding(4);
             this.listBox_Tips.Name = "listBox_Tips";
             this.listBox_Tips.ScrollAlwaysVisible = true;
-            this.listBox_Tips.Size = new System.Drawing.Size(499, 130);
+            this.listBox_Tips.Size = new System.Drawing.Size(235, 130);
             this.listBox_Tips.TabIndex = 8;
             // 
             // labelUserName
@@ -273,15 +275,17 @@
             // 
             // comboBoxCamera
             // 
+            this.comboBoxCamera.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxCamera.FormattingEnabled = true;
             this.comboBoxCamera.Location = new System.Drawing.Point(1128, 472);
             this.comboBoxCamera.Name = "comboBoxCamera";
-            this.comboBoxCamera.Size = new System.Drawing.Size(479, 26);
+            this.comboBoxCamera.Size = new System.Drawing.Size(225, 26);
             this.comboBoxCamera.TabIndex = 22;
             this.comboBoxCamera.SelectedIndexChanged += new System.EventHandler(this.comboBoxCamera_SelectedIndexChanged);
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Location = new System.Drawing.Point(1128, 378);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(135, 37);
@@ -290,11 +294,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1128, 330);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(135, 32);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "登录";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // AliRtcSample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1665, 788);
+            this.ClientSize = new System.Drawing.Size(1391, 788);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBoxCamera);
             this.Controls.Add(this.btn_right);
@@ -312,7 +327,7 @@
             this.Controls.Add(this.groupBox_LocalView);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AliRtcSample";
-            this.Text = "AliRtcSample";
+            this.Text = "招生远程面试系统";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AliRtcSample_FormClosing);
             this.Resize += new System.EventHandler(this.AliRtcSample_SizeChanged);
             this.groupBox_LocalView.ResumeLayout(false);
@@ -350,6 +365,7 @@
         private System.Windows.Forms.CheckBox checkH5;
         private System.Windows.Forms.ComboBox comboBoxCamera;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
